@@ -17,19 +17,20 @@ provider:
 functions:
   #Entry
   getEntries:
-    handler: modules/entry/getEntries.py
+    handler: modules/entry/getEntries.lambda_handler
 
   #Comment
   createComment:
-    handler: modules/comment/createComment.py
+    handler: modules/comment/createComment.lambda_handler
 
   #Test
   getTestById:
-    handler: modules/test/getTestById.py
+    handler: modules/test/getTestById.lambda_handler
 
 plugins:
-  # - serverless-python-requirements
+  - serverless-python-requirements
   - serverless-appsync-plugin
+
 
 custom:
   appSync:
