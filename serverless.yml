@@ -21,7 +21,11 @@ functions:
 
   #Comment
   createComment:
-    handler: modules/entry/createComment.py
+    handler: modules/comment/createComment.py
+
+  #Test
+  getTestById:
+    handler: modules/test/getTestById.py
 
 plugins:
   - serverless-python-requirements
