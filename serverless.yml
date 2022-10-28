@@ -9,10 +9,10 @@ provider:
   runtime: python3.9
   region: us-east-2
   environment:    
-    DB_HOST: ${param:DB_HOST, ''}
-    DB_NAME: ${param:DB_NAME, ''}
-    DB_PASSWORD: ${param:DB_PASSWORD, ''}
-    DB_USERNAME: ${param:DB_USERNAME, ''}
+    DB_HOST: ${param:DB_HOST, 'cs3dev.cr93xtx01yjn.ap-southeast-1.rds.amazonaws.com'}
+    DB_USERNAME: ${param:DB_USERNAME, 'admin'}
+    DB_PASSWORD: ${param:DB_PASSWORD, '123456789'}
+    DB_NAME: ${param:DB_NAME, 'cs3dev'}
 
 functions:
   #Entry
@@ -28,8 +28,9 @@ functions:
     handler: modules/test/getTestById.py
 
 plugins:
-  - serverless-python-requirements
+  # - serverless-python-requirements
   - serverless-appsync-plugin
+
 custom:
   appSync:
     name: ${sls:stage}_CS3_Backend
