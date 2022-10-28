@@ -25,7 +25,7 @@ functions:
 
   #Test
   getTestById:
-    handler: modules/test/getTestById.py
+    handler: modules/getTestById.py
 
 plugins:
   # - serverless-python-requirements
