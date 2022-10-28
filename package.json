@@ -1,4 +1,8 @@
 {
+  "name": "cs3dev",
+  "version": "1.0.0",
+  "author": "elife",
+  "license": "MIT",
   "scripts": {
     "preinstall": "cat graphql/*.graphql >> graphql/schema.graphql"
   },
