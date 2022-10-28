@@ -20,4 +20,4 @@ type Mutation {
   updateEntry(access_token: String!, caption: String, category_l_id: Int, description: String!, id: Int!, images: String!, module_id: Int, spot: String): ResponseCreateEntry
 }
 
-# DO NOT DELETE LAST LINE
+# DO NOT DELETE LAST LINE 123
