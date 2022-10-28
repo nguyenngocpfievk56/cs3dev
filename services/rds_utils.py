@@ -10,6 +10,8 @@ password = os.environ['DB_PASSWORD']
 database = os.environ['DB_NAME']
 port = os.environ['DB_PORT']
 
+print(host)
+print(dbuser)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
@@ -25,6 +27,7 @@ def make_connection():
     except pymysql.MySQLError as e:
         logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
         logger.error(e)
+        print(e)
         sys.exit()
         return False
 
