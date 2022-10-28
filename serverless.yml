@@ -45,6 +45,11 @@ custom:
         type: Mutation
         field: createComment
 
+      #Test
+      - dataSource: getTestById
+        type: Query
+        field: getTestById
+
     dataSources:
       #Entry
       - type: AWS_LAMBDA
@@ -57,3 +62,9 @@ custom:
         name: createComment
         config:
           functionName: createComment
+
+      #Test
+      - type: AWS_LAMBDA
+        name: getTestById
+        config:
+          functionName: getTestById

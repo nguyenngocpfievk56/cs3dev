@@ -7,4 +7,5 @@ type Query {
   getUserById(access_token: String!): ResponseUser
   getUserReactionsByEntryId(entry_id: Int!): ResponseUserReactions
   login(id_token: String): ResponseLogin
+  getTestById(id: ID): Test
 }
