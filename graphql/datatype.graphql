@@ -1,0 +1,249 @@
+interface Entry {
+  caption: String
+  id: Int!
+}
+
+interface Response {
+  result_code: Int!
+}
+
+type ActionStatus {
+  clip: Boolean
+  follow: Boolean
+  mute: Boolean
+  reaction: String
+}
+
+type Category {
+  caption: String
+  description: String
+  id: Int!
+  img: String
+}
+
+type Comment {
+  actionStatus: ActionStatus
+  commentId: String
+  content: String
+  createdTime: String
+  entryId: Int!
+  id: Int!
+  medias: [Image]
+  reactions: ReactionList
+  replies: SubCommentList
+  user: UserOption
+}
+
+type Comments {
+  currentPage: Int
+  items: [Comment!]
+  limit: Int
+  sort: String
+  total: Int
+}
+
+type Entries {
+  currentPage: Int
+  items: [Placegallery!]
+  limit: Int
+  sort: String
+  total: Int
+}
+
+type Image {
+  type: String
+  url: String
+}
+
+type Module {
+  alias: String
+  caption: String
+  id: Int!
+}
+
+
+
+type Placegallery implements Entry {
+  actionStatus: ActionStatus
+  caption: String
+  category: Category
+  comment: Int
+  createdTime: Int
+  curationSource: String
+  description: String
+  id: Int!
+  medias: [Image]
+  module: Module
+  reactions: ReactionList
+  spot: Spot
+  tags: [String]
+  thumbnail: String
+  user: UserOption
+  view: Int
+}
+
+type Reaction {
+  caption: String
+  count: Int
+  icon: String
+  id: Int!
+}
+
+type ReactionList {
+  items: [Reaction]
+  total: Int
+}
+
+type ResponseComments implements Response {
+  data: Comments
+  result_code: Int!
+}
+
+type ResponseCreateComment implements Response {
+  data: Comment
+  result_code: Int!
+}
+
+type ResponseCreateEntry implements Response {
+  data: Placegallery
+  result_code: Int!
+}
+
+type ResponseEntries implements Response {
+  data: Entries
+  result_code: Int!
+}
+
+type ResponseEntry implements Response {
+  data: Placegallery
+  result_code: Int!
+}
+
+type ResponseLike {
+  actionStatus: ActionStatus
+  reactions: ReactionList
+}
+
+type ResponseLogin implements Response {
+  data: UserOption
+  result_code: Int!
+}
+
+type ResponsePlus implements Response {
+  data: ResponseLike
+  result_code: Int!
+}
+
+type ResponseReaction implements Response {
+  data: [Reaction]
+  result_code: Int!
+}
+
+type ResponseSubComments implements Response {
+  data: SubCommentList
+  result_code: Int!
+}
+
+type ResponseSuccess implements Response {
+  result_code: Int!
+}
+
+type ResponseUser implements Response {
+  data: User
+  result_code: Int!
+}
+
+type ResponseUserReactions implements Response {
+  data: UserReactions
+  result_code: Int!
+}
+
+type Spot {
+  city: String
+  country: String
+  name: String
+  region: String
+  street: String
+}
+
+type SubComment {
+  actionStatus: ActionStatus
+  commentId: String
+  comments: Int
+  content: String
+  createdTime: String
+  entryId: String
+  id: Int!
+  reactions: ReactionList
+  user: UserOption
+}
+
+type SubCommentList {
+  currentPage: Int
+  items: [SubComment]
+  limit: Int
+  sort: String
+  total: Int
+}
+
+type User {
+  birthday: String
+  blog_url: String
+  createdTime: String
+  email: String
+  gender: String
+  id: Int!
+  introduction: String
+  is_imported: String
+  is_mail_magazine_only: String
+  mail_magazine_type: String
+  name_first: String
+  name_kana_first: String
+  name_kana_last: String
+  name_last: String
+  nickname: String
+  num_follower: Int
+  num_following: Int
+  opt_in_mails: String
+  postal_code: String
+  prefecture_id: String
+  profileImg: String
+  question_01: String
+  question_02: String
+  question_03: String
+  question_04: String
+  question_05: String
+  question_06: String
+  question_07: String
+  question_08: String
+  question_09: String
+  question_10: String
+}
+
+type UserOption {
+  id: Int
+  isAdmin: String
+  nickname: String
+  profileImg: String
+  title: String
+}
+
+type UserReaction {
+  birthday: String
+  email: String
+  gender: String
+  id: Int!
+  introduction: String
+  nickname: String
+  profileImg: String
+  reaction: Reaction
+}
+
+type UserReactions {
+  current_page: Int
+  is_last: Boolean
+  total_count: Int!
+  user_reactions: [UserReaction!]
+}
+
+# DO NOT DELETE LAST LINE

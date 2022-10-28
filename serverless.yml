@@ -7,7 +7,7 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: python3.9
-  region: ap-east-1
+  region: us-east-2
   environment:    
     DB_HOST: ${param:DB_HOST, ''}
     DB_NAME: ${param:DB_NAME, ''}

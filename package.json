@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "preinstall": "cat graphql/*.graphql >> graphql/schema.graphql"
+  },
   "devDependencies": {
     "serverless-appsync-plugin": "^1.14.0",
     "serverless-python-requirements": "^6.0.0"

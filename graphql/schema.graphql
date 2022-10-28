@@ -245,3 +245,38 @@ type UserReactions {
   total_count: Int!
   user_reactions: [UserReaction!]
 }
+
+# DO NOT DELETE LAST LINE
+type Mutation {
+  createComment(access_token: String!, comment_id: Int, comment_img: String, description: String!, entry_id: Int!): ResponseCreateComment
+  createCommentPlus(access_token: String, comment_id: Int!, reaction_id: Int): ResponsePlus
+  createCommentReport(access_token: String!, comment_id: Int!, target_table: String, url: String, violate_detail: String, violate_type: String!): ResponseSuccess
+  createEntry(access_token: String!, caption: String, category_l_id: Int, description: String!, images: String!, module_id: Int, spot: String): ResponseCreateEntry
+  createEntryClip(access_token: String!, caption: String, entry_id: Int!, img: String, url: String!): ResponseSuccess
+  createEntryPlus(access_token: String, entry_id: Int!, reaction_id: Int): ResponsePlus
+  createEntryReport(access_token: String!, entry_id: Int!, target_table: String, url: String, violate_detail: String, violate_type: String!): ResponseSuccess
+  createEntryView(access_token: String, entry_id: Int!): ResponseSuccess
+  createUserFollow(access_token: String!, following_user_id: Int!): ResponseSuccess
+  createUserMute(access_token: String!, mute_user_id: Int!): ResponseSuccess
+  deleteComment(access_token: String!, id: Int!): ResponseSuccess
+  deleteCommentPlus(access_token: String, comment_id: Int!): ResponsePlus
+  deleteEntry(access_token: String!, entry_id: Int!): ResponseSuccess
+  deleteEntryClip(access_token: String!, caption: String, entry_id: Int!, img: String, url: String!): ResponseSuccess
+  deleteEntryPlus(access_token: String, entry_id: Int!): ResponsePlus
+  deleteUserFollow(access_token: String!, following_user_id: Int!): ResponseSuccess
+  deleteUserMute(access_token: String!, mute_user_id: Int!): ResponseSuccess
+  updateComment(access_token: String!, comment_img: String, description: String!, id: Int!): ResponseCreateComment
+  updateEntry(access_token: String!, caption: String, category_l_id: Int, description: String!, id: Int!, images: String!, module_id: Int, spot: String): ResponseCreateEntry
+}
+
+# DO NOT DELETE LAST LINE
+type Query {
+  getCommentsByEntryId(access_token: String, currentPage: Int, entry_id: Int, limit: Int, module_id: Int, sort: String): ResponseComments
+  getEntries(access_token: String, currentPage: Int, limit: Int, sort: String): ResponseEntries
+  getEntriesByUserId(access_token: String!): ResponseEntries
+  getEntryById(access_token: String, id: Int!): ResponseEntry
+  getSubComments(access_token: String, comment_id: Int!, currentPage: Int, entry_id: Int!, limit: Int, module_id: Int, sort: String): ResponseSubComments
+  getUserById(access_token: String!): ResponseUser
+  getUserReactionsByEntryId(entry_id: Int!): ResponseUserReactions
+  login(id_token: String): ResponseLogin
+}
