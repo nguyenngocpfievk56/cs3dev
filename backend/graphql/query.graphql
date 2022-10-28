@@ -1,0 +1,10 @@
+type Query {
+  getCommentsByEntryId(access_token: String, currentPage: Int, entry_id: Int, limit: Int, module_id: Int, sort: String): ResponseComments
+  getEntries(access_token: String, currentPage: Int, limit: Int, sort: String): ResponseEntries
+  getEntriesByUserId(access_token: String!): ResponseEntries
+  getEntryById(access_token: String, id: Int!): ResponseEntry
+  getSubComments(access_token: String, comment_id: Int!, currentPage: Int, entry_id: Int!, limit: Int, module_id: Int, sort: String): ResponseSubComments
+  getUserById(access_token: String!): ResponseUser
+  getUserReactionsByEntryId(entry_id: Int!): ResponseUserReactions
+  login(id_token: String): ResponseLogin
+}

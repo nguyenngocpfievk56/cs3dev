@@ -1,0 +1,60 @@
+org: ngocnhelife
+app: cs3dev
+service: backend
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  region: ap-east-1
+  environment:    
+    DB_HOST: ${param:DB_HOST, ''}
+    DB_NAME: ${param:DB_NAME, ''}
+    DB_PASSWORD: ${param:DB_PASSWORD, ''}
+    DB_USERNAME: ${param:DB_USERNAME, ''}
+
+functions:
+  #Entry
+  getEntries:
+    handler: modules/entry/getEntries.py
+
+  #Comment
+  createComment:
+    handler: modules/entry/createComment.py
+
+plugins:
+  - serverless-python-requirements
+  - serverless-appsync-plugin
+
+custom:
+  appSync:
+    name: ${sls:stage}_CS3_Backend
+    schema: graphql/schema.graphql
+    authenticationType: API_KEY
+    defaultMappingTemplates:
+      request: false
+      response: false
+    mappingTemplates:
+      #Entry
+      - dataSource: getEntries
+        type: Query
+        field: getEntries
+
+      #Comment
+      - dataSource: createComment
+        type: Mutation
+        field: createComment
+
+    dataSources:
+      #Entry
+      - type: AWS_LAMBDA
+        name: getEntries
+        config:
+          functionName: getEntries
+
+      #Comment
+      - type: AWS_LAMBDA
+        name: createComment
+        config:
+          functionName: createComment
