@@ -19,63 +19,63 @@ provider:
 functions:
   #Entry
   getEntries:
-    handler: modules/entry/getEntries.py
+    handler: modules/entry/getEntries.lambda_handler
   getEntryById:
-    handler: modules/entry/getEntryById.py
+    handler: modules/entry/getEntryById.lambda_handler
   getUserReactionsByEntryId:
-    handler: modules/entry/getUserReactionsByEntryId.py
+    handler: modules/entry/getUserReactionsByEntryId.lambda_handler
   createEntry:
-    handler: modules/entry/createEntry.py
+    handler: modules/entry/createEntry.lambda_handler
   createEntryClip:
-    handler: modules/entry/createEntryClip.py
+    handler: modules/entry/createEntryClip.lambda_handler
   createEntryPlus:
-    handler: modules/entry/createEntryPlus.py
+    handler: modules/entry/createEntryPlus.lambda_handler
   createEntryReport:
-    handler: modules/entry/createEntryReport.py
+    handler: modules/entry/createEntryReport.lambda_handler
   createEntryView:
-    handler: modules/entry/createEntryView.py
+    handler: modules/entry/createEntryView.lambda_handler
   deleteEntry:
-    handler: modules/entry/deleteEntry.py
+    handler: modules/entry/deleteEntry.lambda_handler
   deleteEntryClip:
-    handler: modules/entry/deleteEntryClip.py
+    handler: modules/entry/deleteEntryClip.lambda_handler
   deleteEntryPlus:
-    handler: modules/entry/deleteEntryPlus.py
+    handler: modules/entry/deleteEntryPlus.lambda_handler
   updateEntry:
-    handler: modules/entry/updateEntry.py
+    handler: modules/entry/updateEntry.lambda_handler
 
   #Comment
   createComment:
-    handler: modules/comment/createComment.py
+    handler: modules/comment/createComment.lambda_handler
   createCommentPlus:
-    handler: modules/comment/createCommentPlus.py
+    handler: modules/comment/createCommentPlus.lambda_handler
   createCommentReport:
-    handler: modules/comment/createCommentReport.py
+    handler: modules/comment/createCommentReport.lambda_handler
   deleteComment:
-    handler: modules/comment/deleteComment.py
+    handler: modules/comment/deleteComment.lambda_handler
   deleteCommentPlus:
-    handler: modules/comment/deleteCommentPlus.py
+    handler: modules/comment/deleteCommentPlus.lambda_handler
   getCommentsByEntryId:
-    handler: modules/comment/getCommentsByEntryId.py
+    handler: modules/comment/getCommentsByEntryId.lambda_handler
   getSubComments:
-    handler: modules/comment/getSubComments.py
+    handler: modules/comment/getSubComments.lambda_handler
   updateComment:
-    handler: modules/comment/updateComment.py
+    handler: modules/comment/updateComment.lambda_handler
 
   #User
   getUserById:
-    handler: modules/user/getUserById.py
+    handler: modules/user/getUserById.lambda_handler
   createUserFollow:
-    handler: modules/user/createUserFollow.py
+    handler: modules/user/createUserFollow.lambda_handler
   createUserMute:
-    handler: modules/user/createUserMute.py
+    handler: modules/user/createUserMute.lambda_handler
   deleteUserFollow:
-    handler: modules/user/deleteUserFollow.py
+    handler: modules/user/deleteUserFollow.lambda_handler
   deleteUserMute:
-    handler: modules/user/deleteUserMute.py
+    handler: modules/user/deleteUserMute.lambda_handler
 
   #Auth
   login:
-    handler: modules/auth/login.py
+    handler: modules/auth/login.lambda_handler
 
 plugins:
   # - serverless-python-requirements
