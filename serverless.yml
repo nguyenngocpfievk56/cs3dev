@@ -22,6 +22,10 @@ functions:
   #Comment
   createComment:
     handler: modules/entry/createComment.py
+  
+  #Test
+  getTestById:
+    handler: modules/test/getTest.py
 
 plugins:
   - serverless-python-requirements
@@ -46,6 +50,11 @@ custom:
         type: Mutation
         field: createComment
 
+      #Test
+      - dataSource: getTestById
+        type: Query
+        field: getTestById
+
     dataSources:
       #Entry
       - type: AWS_LAMBDA
@@ -58,3 +67,9 @@ custom:
         name: createComment
         config:
           functionName: createComment
+
+      #Test
+      - type: AWS_LAMBDA
+        name: getTestById
+        config:
+          functionName: getTestById
