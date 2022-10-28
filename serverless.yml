@@ -8,24 +8,74 @@ provider:
   name: aws
   runtime: python3.9
   region: us-east-2
-  environment:    
+  environment:
     DB_HOST: ${param:DB_HOST, 'cs3dev.cr93xtx01yjn.ap-southeast-1.rds.amazonaws.com'}
     DB_USERNAME: ${param:DB_USERNAME, 'admin'}
     DB_PASSWORD: ${param:DB_PASSWORD, '123456789'}
     DB_NAME: ${param:DB_NAME, 'cs3dev'}
+    DB_PORT: ${param:DB_PORT, '3306'}
+    AUTH0_APP_DOMAIN: ${param:AUTH0_APP_DOMAIN, 'dev-cs2.us.auth0.com'}
 
 functions:
   #Entry
   getEntries:
     handler: modules/entry/getEntries.py
+  getEntryById:
+    handler: modules/entry/getEntryById.py
+  getUserReactionsByEntryId:
+    handler: modules/entry/getUserReactionsByEntryId.py
+  createEntry:
+    handler: modules/entry/createEntry.py
+  createEntryClip:
+    handler: modules/entry/createEntryClip.py
+  createEntryPlus:
+    handler: modules/entry/createEntryPlus.py
+  createEntryReport:
+    handler: modules/entry/createEntryReport.py
+  createEntryView:
+    handler: modules/entry/createEntryView.py
+  deleteEntry:
+    handler: modules/entry/deleteEntry.py
+  deleteEntryClip:
+    handler: modules/entry/deleteEntryClip.py
+  deleteEntryPlus:
+    handler: modules/entry/deleteEntryPlus.py
+  updateEntry:
+    handler: modules/entry/updateEntry.py
 
   #Comment
   createComment:
     handler: modules/comment/createComment.py
+  createCommentPlus:
+    handler: modules/comment/createCommentPlus.py
+  createCommentReport:
+    handler: modules/comment/createCommentReport.py
+  deleteComment:
+    handler: modules/comment/deleteComment.py
+  deleteCommentPlus:
+    handler: modules/comment/deleteCommentPlus.py
+  getCommentsByEntryId:
+    handler: modules/comment/getCommentsByEntryId.py
+  getSubComments:
+    handler: modules/comment/getSubComments.py
+  updateComment:
+    handler: modules/comment/updateComment.py
 
-  #Test
-  getTestById:
-    handler: modules/test/getTestById.py
+  #User
+  getUserById:
+    handler: modules/user/getUserById.py
+  createUserFollow:
+    handler: modules/user/createUserFollow.py
+  createUserMute:
+    handler: modules/user/createUserMute.py
+  deleteUserFollow:
+    handler: modules/user/deleteUserFollow.py
+  deleteUserMute:
+    handler: modules/user/deleteUserMute.py
+
+  #Auth
+  login:
+    handler: modules/auth/login.py
 
 plugins:
   # - serverless-python-requirements
@@ -44,32 +94,196 @@ custom:
       - dataSource: getEntries
         type: Query
         field: getEntries
+      - dataSource: getEntryById
+        type: Query
+        field: getEntryById
+      - dataSource: getUserReactionsByEntryId
+        type: Query
+        field: getUserReactionsByEntryId
+      - dataSource: createEntry
+        type: Mutation
+        field: createEntry
+      - dataSource: createEntryClip
+        type: Mutation
+        field: createEntryClip
+      - dataSource: createEntryPlus
+        type: Mutation
+        field: createEntryPlus
+      - dataSource: createEntryReport
+        type: Mutation
+        field: createEntryReport
+      - dataSource: createEntryView
+        type: Mutation
+        field: createEntryView
+      - dataSource: deleteEntry
+        type: Mutation
+        field: deleteEntry
+      - dataSource: deleteEntryClip
+        type: Mutation
+        field: deleteEntryClip
+      - dataSource: deleteEntryPlus
+        type: Mutation
+        field: deleteEntryPlus
+      - dataSource: updateEntry
+        type: Mutation
+        field: updateEntry
 
       #Comment
       - dataSource: createComment
         type: Mutation
         field: createComment
-
-      #Test
-      - dataSource: getTestById
+      - dataSource: createCommentPlus
+        type: Mutation
+        field: createCommentPlus
+      - dataSource: createCommentReport
+        type: Mutation
+        field: createCommentReport
+      - dataSource: deleteComment
+        type: Mutation
+        field: deleteComment
+      - dataSource: deleteCommentPlus
+        type: Mutation
+        field: deleteCommentPlus
+      - dataSource: updateComment
+        type: Mutation
+        field: updateComment
+      - dataSource: getCommentsByEntryId
         type: Query
-        field: getTestById
+        field: getCommentsByEntryId
+      - dataSource: getSubComments
+        type: Query
+        field: getSubComments
 
+      #Auth
+      - dataSource: login
+        type: Query
+        field: login
+
+      #User
+      - dataSource: getUserById
+        type: Query
+        field: getUserById
+      - dataSource: createUserFollow
+        type: Mutation
+        field: createUserFollow
+      - dataSource: createUserMute
+        type: Mutation
+        field: createUserMute
+      - dataSource: deleteUserFollow
+        type: Mutation
+        field: deleteUserFollow
+      - dataSource: deleteUserMute
+        type: Mutation
+        field: deleteUserMute
     dataSources:
       #Entry
       - type: AWS_LAMBDA
         name: getEntries
         config:
           functionName: getEntries
+      - type: AWS_LAMBDA
+        name: getEntryById
+        config:
+          functionName: getEntryById
+      - type: AWS_LAMBDA
+        name: getUserReactionsByEntryId
+        config:
+          functionName: getUserReactionsByEntryId
+      - type: AWS_LAMBDA
+        name: createEntry
+        config:
+          functionName: createEntry
+      - type: AWS_LAMBDA
+        name: createEntryClip
+        config:
+          functionName: createEntryClip
+      - type: AWS_LAMBDA
+        name: createEntryPlus
+        config:
+          functionName: createEntryPlus
+      - type: AWS_LAMBDA
+        name: createEntryReport
+        config:
+          functionName: createEntryReport
+      - type: AWS_LAMBDA
+        name: createEntryView
+        config:
+          functionName: createEntryView
+      - type: AWS_LAMBDA
+        name: deleteEntry
+        config:
+          functionName: deleteEntry
+      - type: AWS_LAMBDA
+        name: deleteEntryClip
+        config:
+          functionName: deleteEntryClip
+      - type: AWS_LAMBDA
+        name: deleteEntryPlus
+        config:
+          functionName: deleteEntryPlus
+      - type: AWS_LAMBDA
+        name: updateEntry
+        config:
+          functionName: updateEntry
 
       #Comment
       - type: AWS_LAMBDA
         name: createComment
         config:
           functionName: createComment
-
-      #Test
       - type: AWS_LAMBDA
-        name: getTestById
+        name: createCommentPlus
         config:
-          functionName: getTestById
+          functionName: createCommentPlus
+      - type: AWS_LAMBDA
+        name: createCommentReport
+        config:
+          functionName: createCommentReport
+      - type: AWS_LAMBDA
+        name: deleteComment
+        config:
+          functionName: deleteComment
+      - type: AWS_LAMBDA
+        name: deleteCommentPlus
+        config:
+          functionName: deleteCommentPlus
+      - type: AWS_LAMBDA
+        name: updateComment
+        config:
+          functionName: updateComment
+      - type: AWS_LAMBDA
+        name: getCommentsByEntryId
+        config:
+          functionName: getCommentsByEntryId
+      - type: AWS_LAMBDA
+        name: getSubComments
+        config:
+          functionName: getSubComments
+
+      #User
+      - type: AWS_LAMBDA
+        name: getUserById
+        config:
+          functionName: getUserById
+      - type: AWS_LAMBDA
+        name: createUserFollow
+        config:
+          functionName: createUserFollow
+      - type: AWS_LAMBDA
+        name: createUserMute
+        config:
+          functionName: createUserMute
+      - type: AWS_LAMBDA
+        name: deleteUserFollow
+        config:
+          functionName: deleteUserFollow
+      - type: AWS_LAMBDA
+        name: deleteUserMute
+        config:
+          functionName: deleteUserMute
+
+      #Auth
+      - type: AWS_LAMBDA
+        name: login
+        config:
+          functionName: login
