@@ -39,6 +39,7 @@ type Comment {
   user: UserOption
 }
 
+
 type Comments {
   currentPage: Int
   items: [Comment!]
