@@ -246,4 +246,9 @@ type UserReactions {
   user_reactions: [UserReaction!]
 }
 
+type Test {
+  id: ID!
+  content: String!
+}
+
 # DO NOT DELETE LAST LINE
