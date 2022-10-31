@@ -290,6 +290,6 @@ custom:
 layers:
   layerOne:
     path: ./python
-    name: ${sls:stage}-pymysql_jwt_pyzt
-    description: cs3 pymysql pwt pyzt
+    name: ${sls:stage}-pymysql_jwt_pyzt_requests
+    description: cs3 pymysql pwt pyzt requests
     retain: false
