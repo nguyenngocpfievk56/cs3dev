@@ -19,7 +19,7 @@ functions:
   getEntries:
     handler: modules/entry/getEntries.lambda_handler
     layers:
-      - !Ref PymysqlJwtPyzt
+      - !Ref PymysqlJwtPyztLambdaLayer
 
   #Comment
   createComment:
