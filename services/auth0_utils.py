@@ -20,9 +20,14 @@ def get_access_token_by_refresh_token(refresh_token):
         url = 'https://' + auth0_app_domain + '/oauth/token'
         data = "grant_type=refresh_token&client_id=" + auth0_app_client_id + "&client_secret=" + auth0_app_client_secret + "&refresh_token=" + refresh_token
         headers = { 'content-type': "application/x-www-form-urlencoded" }
-        response = requests.post(url, data=data, headers=headers)
-        print(data)
-        print(response.json())
+        response = requests.post(url, data=data, headers=headers).json()
+        if response and response['access_token']:
+            return {
+                "result_code": '0',
+                "data": response
+            }
+        else:
+            message = 'refresh_token error.'
 
     except Exception as e:
         print(e)

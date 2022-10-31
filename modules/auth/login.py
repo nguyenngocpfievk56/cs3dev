@@ -2,7 +2,7 @@ import json
 import uuid
 
 import services.auth0_utils as AU
-import services.rds_utils as RU
+import services.rds_utils as RDU
 import models.oauth_token as OauthToken
 from datetime import datetime,timedelta
 import pytz
@@ -52,7 +52,7 @@ def lambda_handler(event, context):
     userResult = user_data['data']
     email = userResult.get('email')
     select = "SELECT id, nickname, email, title, is_admin FROM cs_user WHERE email= '" + email + "'"
-    userRow = RU.fetchOne(select)
+    userRow = RDU.fetchOne(select)
 
     if userRow.get('email'):
         OauthToken.insertAccessToken(token, userRow.get('id'))
@@ -65,11 +65,11 @@ def lambda_handler(event, context):
     
     sql = "INSERT INTO `cs_user` (`email`, `passwd`, `mail_magazine_type`, `nickname`, `profile_img`, `created`, `modified`) VALUES(%s, %s, %s, %s, %s, %s, %s)"
     val = (userResult.get('email'), uuid.uuid4(), '1', userResult.get('nickname'), userResult.get('picture'), TODAY, TODAY, )
-    rowId = RU.insertOne(sql, val)
+    rowId = RDU.insertOne(sql, val)
     OauthToken.insertAccessToken(token, rowId)
     if rowId:
         select = "SELECT id, nickname, email, title, is_admin FROM cs_user WHERE id= '" + rowId + "'"
-        userRow = RU.fetchOne(select)
+        userRow = RDU.fetchOne(select)
         
     response = {
         'result_code': '0',

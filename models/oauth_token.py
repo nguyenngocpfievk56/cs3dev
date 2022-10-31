@@ -23,3 +23,12 @@ def insertAccessToken(access_token, user_id, expires = None):
     sqlInsert = "INSERT INTO cs_oauth_access_token (`created`,`modified`,`access_token`,`user_id`,`expires`) VALUE (%s,%s,%s,%s,%s)"
     val = (date_time, date_time, access_token, user_id, expires)
     RDU.insertUpdate(sqlInsert, val)
+
+def insertRefreshToken(refresh_token, user_id, expires = None):
+    if not refresh_token: return None
+    
+    if expires is None: expires = (today + relativedelta(days = 30)).strftime('%Y-%m-%d %H:%M:%S')
+    date_time = today.strftime('%Y-%m-%d %H:%M:%S')
+    sqlInsert = "INSERT INTO cs_oauth_refresh_token (`created`,`modified`,`refresh_token`,`user_id`,`expires`) VALUE (%s,%s,%s,%s,%s)"
+    val = (date_time, date_time, refresh_token, user_id, expires)
+    RDU.insertUpdate(sqlInsert, val)
