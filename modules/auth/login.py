@@ -14,7 +14,7 @@ TODAY = datetime.now(tokyoTz).strftime('%Y-%m-%d %H:%M:%S')
 def lambda_handler(event, context):
 
     arguments = event.get('arguments')
-    token = arguments.get('id_token')
+    token = arguments.get('token')
     
     user_token = OauthToken.getUserByAccessToken(token)
     print(user_token)
