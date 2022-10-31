@@ -78,7 +78,9 @@ functions:
     handler: modules/auth/login.lambda_handler
 
 plugins:
+  - serverless-python-requirements
   - serverless-appsync-plugin
+
 
 custom:
   appSync:
@@ -286,10 +288,3 @@ custom:
         name: login
         config:
           functionName: login
-
-layers:
-  layerOne:
-    path: ./python
-    name: ${sls:stage}-pymysql_jwt_pyzt_requests
-    description: cs3 pymysql pwt pyzt requests
-    retain: false
