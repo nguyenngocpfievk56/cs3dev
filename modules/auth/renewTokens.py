@@ -20,6 +20,8 @@ def lambda_handler(event, context):
     
     data = renewTokenData['data']
     access_token = data.get('access_token')
+    print(data)
+    print(access_token)
     select = "SELECT * FROM cs_oauth_refresh_token WHERE refresh_token= '" + refresh_token + "'"
     oauthToken = RDU.fetchOne(select)
     if oauthToken.get('user_id') and access_token:
