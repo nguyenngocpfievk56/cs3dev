@@ -1,3 +1,4 @@
 pymysql
 pytz
-jwt
+pyjwt
+requests
