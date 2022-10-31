@@ -15,6 +15,8 @@ provider:
     DB_NAME: ${param:DB_NAME, 'cs3dev'}
     DB_PORT: ${param:DB_PORT, '3306'}
     AUTH0_APP_DOMAIN: ${param:AUTH0_APP_DOMAIN, 'dev-cs2.us.auth0.com'}
+    AUTH0_APP_CLIENT_ID: ${param:AUTH0_APP_CLIENT_ID, '16IDSJaWalTMaNi2pT5TCHTrw4peR7Ba'}
+    AUTH0_APP_CLIENT_SECRET: ${param:AUTH0_APP_CLIENT_SECRET, 'iM_R32GUQKhcZBhHDpU9WLZkvhzIRH6QLAkXRSfBYCy00YmbWAI8NENsFeT1eOzK'}
 
 functions:
   #Entry
@@ -76,6 +78,8 @@ functions:
   #Auth
   login:
     handler: modules/auth/login.lambda_handler
+  renewToken:
+    handler: modules/auth/renewTokens.lambda_handler
 
 plugins:
   - serverless-python-requirements
@@ -159,6 +163,9 @@ custom:
       - dataSource: login
         type: Query
         field: login
+      - dataSource: renewToken
+        type: Query
+        field: renewToken
 
       #User
       - dataSource: getUserById
@@ -288,3 +295,7 @@ custom:
         name: login
         config:
           functionName: login
+      - type: AWS_LAMBDA
+        name: renewToken
+        config:
+          functionName: renewToken

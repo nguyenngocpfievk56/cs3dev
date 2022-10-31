@@ -51,7 +51,7 @@ def lambda_handler(event, context):
 
     userResult = user_data['data']
     email = userResult.get('email')
-    select = "SELECT id,nickname,email FROM cs_user WHERE email= '" + email + "'"
+    select = "SELECT id, nickname, email, title, is_admin FROM cs_user WHERE email= '" + email + "'"
     userRow = RU.fetchOne(select)
 
     if userRow.get('email'):
@@ -68,7 +68,7 @@ def lambda_handler(event, context):
     rowId = RU.insertOne(sql, val)
     OauthToken.insertAccessToken(token, rowId)
     if rowId:
-        select = "SELECT id,nickname,email FROM cs_user WHERE id= '" + rowId + "'"
+        select = "SELECT id, nickname, email, title, is_admin FROM cs_user WHERE id= '" + rowId + "'"
         userRow = RU.fetchOne(select)
         
     response = {

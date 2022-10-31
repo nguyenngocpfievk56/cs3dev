@@ -129,6 +129,11 @@ type ResponseLogin implements Response {
   result_code: Int!
 }
 
+type ResponseRenewToken {
+  result_code: Int!
+  data: RenewToken
+}
+
 type ResponsePlus implements Response {
   data: ResponseLike
   result_code: Int!
@@ -226,6 +231,14 @@ type UserOption {
   nickname: String
   profileImg: String
   title: String
+}
+
+type RenewToken {
+  access_token: String
+  expires_in: Int
+  scope: String
+  id_token: String
+  token_type: String
 }
 
 type UserReaction {

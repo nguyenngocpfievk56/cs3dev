@@ -8,6 +8,29 @@ import sys
 sys.path.append('../')
 
 auth0_app_domain = os.environ['AUTH0_APP_DOMAIN']
+auth0_app_client_id = os.environ['AUTH0_APP_CLIENT_ID']
+auth0_app_client_secret = os.environ['AUTH0_APP_CLIENT_SECRET']
+
+def get_access_token_by_refresh_token(refresh_token):
+    message = ''
+    if not refresh_token or not auth0_app_domain:
+        message = 'refresh_token is not null'
+    
+    try:
+        url = 'https://' + auth0_app_domain + '/oauth/token'
+        data = "grant_type=refresh_token&client_id=" + auth0_app_client_id + "&client_secret=" + auth0_app_client_secret + "&refresh_token=" + refresh_token
+        headers = { 'content-type': "application/x-www-form-urlencoded" }
+        response = requests.post(url, data=data, headers=headers)
+        print(response)
+
+    except Exception as e:
+        print(e)
+        message = 'system error.'
+
+    return {
+            "result_code": '1',
+            "message": message
+        }
 
 def get_user_by_token(token):
     message = ''
