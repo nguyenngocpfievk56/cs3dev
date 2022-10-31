@@ -29,7 +29,7 @@ functions:
 
 plugins:
   - serverless-appsync-plugin
-
+  - serverless-python-requirements
 custom:
   appSync:
     name: ${sls:stage}_CS3_Backend
