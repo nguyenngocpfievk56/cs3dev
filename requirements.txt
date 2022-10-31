@@ -1,1 +1,4 @@
 pymysql
+pytz
+pyjwt
+requests
