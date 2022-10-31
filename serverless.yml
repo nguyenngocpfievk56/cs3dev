@@ -42,6 +42,8 @@ functions:
     handler: modules/entry/deleteEntryPlus.lambda_handler
   updateEntry:
     handler: modules/entry/updateEntry.lambda_handler
+  layers:
+    - !Ref PymysqlJwtPyzt
 
   #Comment
   createComment:
@@ -288,7 +290,7 @@ custom:
           functionName: login
 
 layers:
-  layerOne:
+  PymysqlJwtPyzt:
     path: ./python
     name: ${sls:stage}-pymysql_jwt_pyzt
     description: cs3 pymysql pwt pyzt
