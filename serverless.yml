@@ -18,6 +18,8 @@ functions:
   #Entry
   getEntries:
     handler: modules/entry/getEntries.lambda_handler
+    layers:
+      - !Ref PymysqlJwtPyzt
 
   #Comment
   createComment:
@@ -74,7 +76,7 @@ custom:
           functionName: getTestById
 
 layers:
-  layerOne:
+  PymysqlJwtPyzt:
     path: ./python
     name: ${sls:stage}-pymysql_jwt_pyzt
     description: cs3 pymysql pwt pyzt
