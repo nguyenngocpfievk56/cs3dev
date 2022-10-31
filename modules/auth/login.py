@@ -17,7 +17,7 @@ def lambda_handler(event, context):
     token = arguments.get('id_token')
     
     user_token = OauthToken.getUserByAccessToken(token)
-
+    print(user_token)
     if user_token and str(user_token['expires']) < TODAY:
         response = {
             'result_code': '1',
@@ -46,6 +46,7 @@ def lambda_handler(event, context):
             'data': {},
             'message': user_data['message']
         }
+        print(response)
         return response
 
     userResult = user_data['data']
@@ -59,6 +60,7 @@ def lambda_handler(event, context):
             'result_code': '0',
             'data':userRow
         }
+        print(response)
         return response
     
     sql = "INSERT INTO `cs_user` (`email`, `passwd`, `mail_magazine_type`, `nickname`, `profile_img`, `created`, `modified`) VALUES(%s, %s, %s, %s, %s, %s, %s)"
@@ -73,4 +75,5 @@ def lambda_handler(event, context):
         'result_code': '0',
         'data': userRow
     }
+    print(response)
     return response
