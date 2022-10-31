@@ -22,4 +22,4 @@ def insertAccessToken(access_token, user_id, expires = None):
     date_time = today.strftime('%Y-%m-%d %H:%M:%S')
     sqlInsert = "INSERT INTO cs_oauth_access_token (`created`,`modified`,`access_token`,`user_id`,`expires`) VALUE (%s,%s,%s,%s,%s)"
     val = (date_time, date_time, access_token, user_id, expires)
-    RDU.insertOne(sqlInsert, val)
+    RDU.insertUpdate(sqlInsert, val)
