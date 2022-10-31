@@ -27,6 +27,7 @@ def lambda_handler(event, context):
 
     response = {
             'result_code': '0',
-            'data': renewTokenData,
+            'data': data,
         }
+    print(response)
     return response
