@@ -28,9 +28,7 @@ functions:
     handler: modules/test/getTestById.lambda_handler
 
 plugins:
-  - serverless-python-requirements
   - serverless-appsync-plugin
-
 
 custom:
   appSync:
@@ -74,3 +72,10 @@ custom:
         name: getTestById
         config:
           functionName: getTestById
+
+layers:
+  layerOne:
+    path: lambda_layers/pymysql_jwt_pytz.zip
+    name: ${sls:stage}-pymysql_jwt_pyzt
+    description: cs3 pymysql pwt pyzt
+    retain: false
