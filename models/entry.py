@@ -32,7 +32,7 @@ def sortCondition(sort):
     return switcher.get(sort, "created DESC")
 
 def getEntries(input, limit = 10, offset = 0):
-    query = "SELECT `es`.*, `us`.`profile_img`, `us`.`nickname`, `ess`.`name`, `ess`.`region`, `ess`.`city` "
+    query = "SELECT `es`.`id`, `es`.`description`, `es`.`caption`, `es`.`img_thumbnail`, `es`.`sns_type`, `es`.`created`, `es`.`num_comment`, `es`.`num_view`, `es`.`category_l_id`, `es`.`module_id`, `es`.`num_good`, `es`.`user_id`, `es`.`img`, `es`.`img_type`, `es`.`img2`, `es`.`img_type`, `es`.`img3`, `es`.`img_type3`, `es`.`img4`, `es`.`img_type4`, `es`.`img5`, `es`.`img_type5`, `es`.`module_entry_id`, `es`.`module_type`, `es`.`tag` "
     query += "FROM `cs_entry` AS `es` INNER JOIN `cs_user` AS `us` ON es.user_id = us.id LEFT JOIN `cs_entry_spot` AS `ess` ON es.id = ess.entry_id "
     query += "WHERE (es.deleted IS NULL) AND (us.deleted IS NULL) AND (ess.deleted IS NULL) AND (es.status in (" + STATUS_NEW + ", " + STATUS_APPROVAL + ")) AND (es.opened is null or es.opened <= '" + str(NOW) + "') AND (es.closed is null or es.closed >= '" + str(NOW) + "')"
 
@@ -72,7 +72,6 @@ def getOptionEntryResponse(item, user_id):
     entry['thumbnail'] = item['img_thumbnail']
     entry['curationSource'] = item['sns_type']
     entry["createdTime"] = item['created'].timestamp()
-    entry['curationSource'] = item['sns_type']
     entry['comment'] = item['num_comment']
     entry['view'] = item['num_view']
     entry['spot'] = {}

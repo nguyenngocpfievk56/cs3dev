@@ -10,8 +10,6 @@ password = os.environ['DB_PASSWORD']
 database = os.environ['DB_NAME']
 port = os.environ['DB_PORT']
 
-print(host)
-print(dbuser)
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
