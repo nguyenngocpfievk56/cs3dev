@@ -6,6 +6,7 @@ type Query {
   getSubComments(access_token: String, comment_id: Int!, currentPage: Int, entry_id: Int!, limit: Int, module_id: Int, sort: String): ResponseSubComments
   getUserById(access_token: String!): ResponseUser
   getUserReactionsByEntryId(entry_id: Int!): ResponseUserReactions
-  login(id_token: String): ResponseLogin
+  login(token: String): ResponseLogin
+  renewToken(refresh_token: String): ResponseRenewToken
   getTestById(id: ID): Test
 }
